@@ -12,6 +12,11 @@ import java.util.Date;
 public class Logger {
 
     /**
+     * Logger version string
+     */
+    private static final String version = "1.0.0";
+
+    /**
      * Loaded logger
      */
     private static Logger logger;
@@ -172,5 +177,13 @@ public class Logger {
         if (logInFile && (Logger.logger.logfile != null)) {
             Logger.logger.writeEntryToLogfile(logEntry);
         }
+    }
+
+    /**
+     * Gets the Version of the Logger
+     * @return Version string
+     */
+    public static String getVersion() {
+        return version;
     }
 }
