@@ -14,7 +14,7 @@ public class Logger {
     /**
      * Logger version string
      */
-    private static final String version = "1.0.0";
+    private static final String version = "1.0.1";
 
     /**
      * Loaded logger
