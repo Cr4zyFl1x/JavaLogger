@@ -153,26 +153,26 @@ public class Logger {
 
     /**
      * Logs a log entry into console and logfile if directory for logfiles is defined
-     * @param l LogType Object
+     * @param logType LogType Object
      * @param message Message to log
      */
-    public static void log(LogType l, String message)
+    public static void log(LogType logType, String message)
     {
-        Logger.log(l, message, true);
+        Logger.log(logType, message, true);
     }
 
     /**
      * Logs a log entry into console and logfile if wanted and if directory for logfiles is defined
-     * @param l LogType Object
+     * @param logType LogType Object
      * @param message Message to log
      * @param logInFile Defines if entry also should be logged in logfile (Only if directory for logfiles is defined)
      */
-    public static void log(LogType l, String message, boolean logInFile) {
+    public static void log(LogType logType, String message, boolean logInFile) {
         if (Logger.logger == null) {
             System.out.println("CRITICAL ERROR: No Logger was loaded before logging record. Please load Logger first.");
             return;
         }
-        LogEntry logEntry = new LogEntry(new Date(), l, message);
+        LogEntry logEntry = new LogEntry(new Date(), logType, message);
         System.out.print(logEntry.getLogEntry() + "\n");
         if (logInFile && (Logger.logger.logfile != null)) {
             Logger.logger.writeEntryToLogfile(logEntry);
