@@ -77,7 +77,8 @@ public class LogType {
      * @param prefix Prefix for log entries with that type
      * @param color Color of that log type
      */
-    public LogType(String prefix, Color color) {
+    public LogType(String prefix, Color color)
+    {
         this.prefix = prefix;
         this.color = color;
     }
@@ -86,7 +87,8 @@ public class LogType {
      * Gets the LogType prefix
      * @return LogType prefix
      */
-    public String getPrefix() {
+    public String getPrefix()
+    {
         return prefix;
     }
 
@@ -94,7 +96,8 @@ public class LogType {
      * Gets the color of log type as Color object
      * @return Color object
      */
-    public Color getColor() {
+    public Color getColor()
+    {
         return color;
     }
 }

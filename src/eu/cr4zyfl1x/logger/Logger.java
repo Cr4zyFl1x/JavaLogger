@@ -14,7 +14,7 @@ public class Logger {
     /**
      * Logger version string
      */
-    private static final String version = "1.0.1";
+    private static final String version = "1.1.0";
 
     /**
      * Loaded logger
@@ -127,6 +127,61 @@ public class Logger {
     }
 
     /**
+     * Gets the name of the logger instance
+     * @return Name as String
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * Gets the creation date of teh logger instance
+     * @return Creation date as Date object
+     */
+    public Date getCreationDate()
+    {
+        return createdAt;
+    }
+
+    /**
+     * Gets the directory where the logfile is saved
+     * @return Directory of the logfile
+     */
+    public String getLogfileDir()
+    {
+        return logfile != null ? directory : null;
+    }
+
+    /**
+     * Gets the path to the logfile as String
+     * @return Path to the logfile
+     */
+    public String getLogfilePath()
+    {
+        return logfile != null ? directory + logfilename : null;
+    }
+
+    /**
+     * Gets the logfile as File object
+     * @return File object of logfile
+     */
+    public File getLogfile()
+    {
+        return logfile != null ? this.logfile : null;
+    }
+
+    /**
+     * Gets the name of the logfile as String
+     * @return Name of the logfile
+     */
+    public String getLogfileName()
+    {
+        return logfile != null ? logfile.getName() : null;
+    }
+
+
+    /**
      * Writes a log entry to the logfile
      * @param logEntry Log entry to be written
      */
@@ -146,7 +201,8 @@ public class Logger {
      * @param logger Valid logger object
      * @throws InvalidLoggerException Thrown if Logger is invalid
      */
-    public static void load(Logger logger) throws InvalidLoggerException {
+    public static void load(Logger logger) throws InvalidLoggerException
+    {
         if (logger == null) throw new InvalidLoggerException("Can not load load Logger: Invalid logger instance 'null'");
         Logger.logger = logger;
     }
@@ -167,7 +223,8 @@ public class Logger {
      * @param message Message to log
      * @param logInFile Defines if entry also should be logged in logfile (Only if directory for logfiles is defined)
      */
-    public static void log(LogType logType, String message, boolean logInFile) {
+    public static void log(LogType logType, String message, boolean logInFile)
+    {
         if (Logger.logger == null) {
             System.out.println("CRITICAL ERROR: No Logger was loaded before logging record. Please load Logger first.");
             return;
@@ -183,7 +240,17 @@ public class Logger {
      * Gets the Version of the Logger
      * @return Version string
      */
-    public static String getVersion() {
+    public static String getVersion()
+    {
         return version;
+    }
+
+    /**
+     * Checks if Logger is loaded
+     * @return Returns true if logger is loaded
+     */
+    public static boolean isLoaded()
+    {
+        return logger != null;
     }
 }

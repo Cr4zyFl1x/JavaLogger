@@ -40,7 +40,8 @@ public class LogEntry {
      * Gets the timestamp of the log entry
      * @return Timestamp of log entry
      */
-    public Date getTimestamp() {
+    public Date getTimestamp()
+    {
         return timestamp;
     }
 
@@ -48,7 +49,8 @@ public class LogEntry {
      * Gets the LogType object
      * @return LogType object
      */
-    public LogType getLogType() {
+    public LogType getLogType()
+    {
         return logType;
     }
 
@@ -56,7 +58,8 @@ public class LogEntry {
      * Gets the message of the log entry
      * @return Message as String
      */
-    public String getMessage() {
+    public String getMessage()
+    {
         return message;
     }
 
