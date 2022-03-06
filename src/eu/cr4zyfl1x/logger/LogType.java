@@ -61,6 +61,16 @@ public class LogType {
      */
     public static final LogType SYSTEM = system;
 
+    /**
+     * LogType for EXCEPTION entries
+     */
+    private static final LogType exception = new LogType("EXCEPTION", new Color(255, 70, 70));
+
+    /**
+     * LogType for EXCEPTION entries
+     */
+    public static final LogType EXCEPTION = exception;
+
 
     /**
      * Prefix of log type

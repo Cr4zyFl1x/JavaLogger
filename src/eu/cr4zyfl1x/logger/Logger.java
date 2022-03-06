@@ -14,7 +14,7 @@ public class Logger {
     /**
      * Logger version string
      */
-    private static final String version = "1.1.0";
+    private static final String version = "1.2.0";
 
     /**
      * Loaded logger
@@ -229,11 +229,48 @@ public class Logger {
             System.out.println("CRITICAL ERROR: No Logger was loaded before logging record. Please load Logger first.");
             return;
         }
+
         LogEntry logEntry = new LogEntry(new Date(), logType, message);
         System.out.print(logEntry.getLogEntry() + "\n");
         if (logInFile && (Logger.logger.logfile != null)) {
             Logger.logger.writeEntryToLogfile(logEntry);
         }
+    }
+
+    /**
+     * Logs an exception into console and logfile if wanted and if directory for logfiles is defined
+     * @param exception Exception object
+     */
+    public static void logException(Exception exception)
+    {
+        logException(exception, true);
+    }
+
+    /**
+     * Logs an exception into console and logfile if wanted and if directory for logfiles is defined
+     * @param exception Exception object
+     * @param logInFile Defines if entry also should be logged in logfile (Only if directory for logfiles is defined)
+     */
+    public static void logException(Exception exception, boolean logInFile)
+    {
+        if (Logger.logger == null) {
+            System.out.println("CRITICAL ERROR: No Logger was loaded before logging record. Please load Logger first.");
+            return;
+        }
+
+        String[] exceptionStrings = new String[exception.getStackTrace().length+1];
+        exceptionStrings[0] = exception.toString();
+        for (int i=0; i < exception.getStackTrace().length; i++) {
+            exceptionStrings[i+1] = exception.getStackTrace()[i].toString();
+        }
+
+        StringBuilder stackTrace = new StringBuilder();
+        stackTrace.append(exceptionStrings[0]);
+        for (int i = 1; i < exceptionStrings.length; i++) {
+            stackTrace.append("\n   ").append(exceptionStrings[i]);
+        }
+
+        Logger.log(LogType.EXCEPTION, stackTrace.toString(), logInFile);
     }
 
     /**
@@ -252,5 +289,14 @@ public class Logger {
     public static boolean isLoaded()
     {
         return logger != null;
+    }
+
+    /**
+     * Returns the current loaded Logger object
+     * @return Loaded logger object. Null if no logger is loaded
+     */
+    public static Logger getLogger()
+    {
+        return logger;
     }
 }
